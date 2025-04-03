@@ -1,3 +1,6 @@
+
+import javax.swing.JFrame;
+
 public class App {
     public static void main(String[] args) throws Exception {
      int rowCount=21;
@@ -6,6 +9,8 @@ public class App {
      int boardWidth=columCount*tileSize;
      int boardHeight=rowCount*tileSize;
    
+     JFrame frame=new JFrame("pac man");
+     frame.setVisible(true);
 
     }
 
