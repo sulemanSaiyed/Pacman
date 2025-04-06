@@ -22,7 +22,10 @@ public class PacMan extends  JPanel{
       this.y=y;
       this.width=width;
       this.height=height;
+      thsi.startX=startX;
+      this.startY=startY;
 
+      
     }
   }
   private int rowCount=21;
@@ -48,6 +51,9 @@ public class PacMan extends  JPanel{
   
   private Image packManRightImage;
 
+HashSet<Block>walls;
+HashSet<Block>foods;
+HashSet<Block>ghosts;
     public PacMan() {
      setPreferredSize(new Dimension(boardWidth, boardHeight));
       setBackground(Color.BLACK);
