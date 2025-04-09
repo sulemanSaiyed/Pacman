@@ -51,9 +51,7 @@ public class PacMan extends  JPanel{
   private Image packManRightImage;
 
   
-Pinned by @KennyYipCoding
-@KennyYipCoding
-5 months ago
+
 //X = wall, O = skip, P = pac man, ' ' = food
     //Ghosts: b = blue, o = orange, p = pink, r = red
     private String[] tileMap = {
@@ -98,5 +96,10 @@ packManUpImage= new ImageIcon(getClass().getResource("./pacmanUp.png")).getImage
 packManRightImage= new ImageIcon(getClass().getResource("./pacmanLeft.png")).getImage(); 
 packManLeftImage= new ImageIcon(getClass().getResource("./pacmanRight.png")).getImage(); 
 
+    }
+    public void loadMap(){
+      walls=new HashSet<Block>();
+      foods=new HashSet<Block>();
+      ghosts=new HashSet<Block>();
     }
 }
