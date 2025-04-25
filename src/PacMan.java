@@ -2,6 +2,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.HashSet;
 import java.util.Random;
+import javax.sql.rowset.spi.SyncResolver;
 import javax.swing.*;
 
 public class PacMan extends  JPanel{
@@ -21,8 +22,8 @@ public class PacMan extends  JPanel{
       this.y=y;
       this.width=width;
       this.height=height;
-      thsi.startX=startX;
-      this.startY=startY;
+      this.startX=x;
+      this.startY=y;
 
       
     }
@@ -35,21 +36,17 @@ public class PacMan extends  JPanel{
 
   private  Image wallImage;
   private Image blueGhostImage;
-  private Image redGhostImage;
-  
+   private Image redGhostImage;
   private Image pinkGhostImage;
-  
   private Image orangeGhostImage;
   
 
   private Image packManUpImage;
-  
   private Image packManDownImage;
-  
-  private Image packManLeftImage;
-  
+  private Image packManLeftImage; 
   private Image packManRightImage;
 
+ 
   
 
 //X = wall, O = skip, P = pac man, ' ' = food
@@ -80,26 +77,71 @@ public class PacMan extends  JPanel{
 HashSet<Block>walls;
 HashSet<Block>foods;
 HashSet<Block>ghosts;
+Block pacMan;
     public PacMan() {
      setPreferredSize(new Dimension(boardWidth, boardHeight));
       setBackground(Color.BLACK);
     
     //loading image in varibel
-wallImage= new ImageIcon(getClass().getResource("./wall.png")).getImage(); 
-orangeGhostImage= new ImageIcon(getClass().getResource("./orangeGhost.png")).getImage(); 
-redGhostImage= new ImageIcon(getClass().getResource("./redGhost.png")).getImage(); 
-pinkGhostImage= new ImageIcon(getClass().getResource("./pinkGhost.png")).getImage(); 
-blueGhostImage= new ImageIcon(getClass().getResource("./blueGhost.png")).getImage(); 
+wallImage= new ImageIcon(getClass().getResource("/images/wall.png")).getImage(); 
+orangeGhostImage= new ImageIcon(getClass().getResource("/images/orangeGhost.png")).getImage(); 
+redGhostImage= new ImageIcon(getClass().getResource("/images/redGhost.png")).getImage(); 
+pinkGhostImage= new ImageIcon(getClass().getResource("/images/pinkGhost.png")).getImage(); 
+blueGhostImage= new ImageIcon(getClass().getResource("/images/blueGhost.png")).getImage(); 
 
-packManDownImage= new ImageIcon(getClass().getResource("./pacmanDown.png")).getImage(); 
-packManUpImage= new ImageIcon(getClass().getResource("./pacmanUp.png")).getImage(); 
-packManRightImage= new ImageIcon(getClass().getResource("./pacmanLeft.png")).getImage(); 
-packManLeftImage= new ImageIcon(getClass().getResource("./pacmanRight.png")).getImage(); 
+packManDownImage= new ImageIcon(getClass().getResource("/images/pacmanDown.png")).getImage(); 
+packManUpImage= new ImageIcon(getClass().getResource("/images/pacmanUp.png")).getImage(); 
+packManRightImage= new ImageIcon(getClass().getResource("/images/pacmanLeft.png")).getImage(); 
+packManLeftImage= new ImageIcon(getClass().getResource("/images/pacmanRight.png")).getImage(); 
+
+loadMap();
+
+System.out.println(walls.size());
+System.out.println(foods.size());
+System.out.println(ghosts.size());
 
     }
+  
     public void loadMap(){
       walls=new HashSet<Block>();
       foods=new HashSet<Block>();
       ghosts=new HashSet<Block>();
-    }
+  
+
+       for (int r=0; r<rowCount;r++){
+        for (int c=0;c<columCount;c++){
+          String row=tileMap[r];
+          char tileMapChar =row.charAt(c);
+
+          int x=c*tileSize;
+          int y =r*tileSize;
+          if(tileMapChar=='X'){// block wall
+Block wall=new Block(wallImage, x, y, tileSize, tileSize);
+walls.add(wall);
+          }
+          else if (tileMapChar =='b'){// blue ghost ka
+Block ghost= new Block(blueGhostImage, x, y, tileSize, tileSize);
+ghosts.add(ghost);
+          }
+          else if (tileMapChar =='o'){// ornge ghost ka
+            Block ghost= new Block(orangeGhostImage, x, y, tileSize, tileSize);
+            ghosts.add(ghost);
+                      }
+                      else if (tileMapChar =='p'){// pink ghost ka
+                        Block ghost= new Block(pinkGhostImage, x, y, tileSize, tileSize);
+                        ghosts.add(ghost);
+                                  }
+                                  else if (tileMapChar =='r'){// red ghost ka
+                                    Block ghost= new Block(redGhostImage, x, y, tileSize, tileSize);
+                                    ghosts.add(ghost);
+                                              }
+                                              else if(tileMapChar=='P'){//packman loda
+                                                pacMan=new Block(packManRightImage, x, y, tileSize, tileSize);
+                                              }
+                                              else if (tileMapChar== ' '){//food
+                                                Block food= new Block(null, x+14, y+14, 4, 4);
+                                              foods.add(food);}
+        }
+       }
+    }  
 }
