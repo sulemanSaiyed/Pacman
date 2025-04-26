@@ -254,6 +254,18 @@ public boolean  collision(Block a, Block b){
    else if(e.getKeyCode()==KeyEvent.VK_RIGHT){
       pacMan.updateDirection('R');
     }
+    if(pacMan.direction=='U'){
+      pacMan.image=packManUpImage;
+    }
+    else if(pacMan.direction=='D'){
+      pacMan.image=packManDownImage;
+    }
+    else if(pacMan.direction=='L'){
+      pacMan.image=packManLeftImage;
+    }
+    else if(pacMan.direction=='D'){
+      pacMan.image=packManRightImage;
+    }
     }
 
     }
