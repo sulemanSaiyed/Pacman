@@ -146,11 +146,22 @@ ghosts.add(ghost);
    
     public void paintComponent(Graphics g){
 
-      super.paintComponent(g);
+     super.paintComponent(g);
       draw(g);
     }
     public void draw(Graphics g){
       g.drawImage(pacMan.image, pacMan.x, pacMan.y, pacMan.width,  pacMan.height, null);
+      for(Block ghost:ghosts){
+      g.drawImage(ghost.image, ghost.x, ghost.y, ghost.width, ghost.height, null);
+      }
+      for(Block wall:walls){
+        g.drawImage(wall.image, wall.x, wall.y, wall.width, wall.height, null);
+        }
+        g.setColor(Color.white);
+        for(Block food:foods){
+          g.fillRect(food.x, food.y, food.width, food.height);
+          }
     }
+
     }
 
