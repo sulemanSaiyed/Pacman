@@ -1,6 +1,6 @@
 import java.awt.*;
 import java.awt.event.*;
-import java.lang.classfile.instruction.ThrowInstruction;
+
 import java.util.HashSet;
 import java.util.Random;
 import javax.sql.rowset.spi.SyncResolver;
@@ -190,9 +190,15 @@ ghosts.add(ghost);
           g.fillRect(food.x, food.y, food.width, food.height);
           }
     }
-
+public void move(){
+  pacMan.x +=pacMan.velocityX;
+  pacMan.y +=pacMan.velocityY;
+  pacMan.x +=pacMan.velocityX;
+  pacMan.x +=pacMan.velocityX;
+}
     @Override
     public void actionPerformed(ActionEvent e) {
+      move();
       repaint();
       
     }
@@ -204,13 +210,24 @@ ghosts.add(ghost);
 
     @Override
     public void keyPressed(KeyEvent e) {
-      // TODO Auto-generated method stub
+     
 
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-      System.out.println("KeyEvent: "+ e.getKeyCode());
+    if(e.getKeyCode()==KeyEvent.VK_UP){
+      pacMan.updateDirection('U');
+    }
+    else if(e.getKeyCode()==KeyEvent.VK_DOWN){
+      pacMan.updateDirection('D');
+    }
+    else if(e.getKeyCode()==KeyEvent.VK_LEFT){
+      pacMan.updateDirection('L');
+    }
+   else if(e.getKeyCode()==KeyEvent.VK_RIGHT){
+      pacMan.updateDirection('R');
+    }
     }
 
     }
