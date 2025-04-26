@@ -115,8 +115,10 @@ HashSet<Block>walls;
 HashSet<Block>foods;
 HashSet<Block>ghosts;
 Block pacMan;
-Timer gameLoop;
 
+Timer gameLoop;
+char[] directions={'U', 'D', 'L', 'R'};
+Random random= new Random();
     public PacMan() {
      setPreferredSize(new Dimension(boardWidth, boardHeight));
       setBackground(Color.BLACK);
@@ -138,6 +140,11 @@ packManLeftImage = new ImageIcon(getClass().getResource("/images/pacmanLeft.png"
 
 loadMap();
 
+
+for(Block ghost:ghosts){
+  char newDirection=directions[random.nextInt(4)];
+  ghost.updateDirection(newDirection);
+}
 gameLoop = new Timer(50, this);
 gameLoop.start();
     }
@@ -206,6 +213,8 @@ ghosts.add(ghost);
 public void move(){
   pacMan.x +=pacMan.velocityX;
   pacMan.y +=pacMan.velocityY;
+
+  // wall
   for(Block wall:walls){
     if(collision(pacMan, wall)){
 
@@ -214,6 +223,22 @@ pacMan.y-=pacMan.velocityY;
 break;
 
 }  }
+// ghost
+for(Block ghost:ghosts){
+  
+
+ghost.x+=ghost.velocityX;
+ghost.y+=ghost.velocityY;
+for(Block wall:walls){
+  if(collision(ghost, wall)){
+
+    ghost.x-=ghost.velocityX;
+    ghost.y-=ghost.velocityY;
+    char newDirection=directions[random.nextInt(4)];
+    ghost.updateDirection(newDirection);
+
+  }}
+  }
 }
 public boolean  collision(Block a, Block b){
   return  a.x<b.x+b.width&&
