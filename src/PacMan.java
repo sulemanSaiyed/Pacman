@@ -1,5 +1,6 @@
 import java.awt.*;
 import java.awt.event.*;
+import java.sql.Blob;
 
 import java.util.HashSet;
 import java.util.Random;
@@ -30,7 +31,7 @@ public class PacMan extends  JPanel implements ActionListener, KeyListener{
       this.startY=y;
     }
     void updateDirection(char Direction){
-      this.direction=direction;
+      this.direction=Direction;
       updateVelocity();
     }
     void updateVelocity(){
@@ -193,8 +194,21 @@ ghosts.add(ghost);
 public void move(){
   pacMan.x +=pacMan.velocityX;
   pacMan.y +=pacMan.velocityY;
-  pacMan.x +=pacMan.velocityX;
-  pacMan.x +=pacMan.velocityX;
+  for(Block wall:walls){
+    if(collision(pacMan, wall)){
+
+pacMan.x-=pacMan.velocityX;
+pacMan.y-=pacMan.velocityY;
+break;
+
+}  }
+}
+public boolean  collision(Block a, Block b){
+  return  a.x<b.x+b.width&&
+          a.x+a.width>b.x &&
+          a.y< b.y + b.height &&
+          a.y+ a.height>b.y;
+
 }
     @Override
     public void actionPerformed(ActionEvent e) {
