@@ -5,7 +5,7 @@ import java.util.Random;
 import javax.sql.rowset.spi.SyncResolver;
 import javax.swing.*;
 
-public class PacMan extends  JPanel{
+public class PacMan extends  JPanel implements ActionListener{
   class Block{
     int x;
     int y;
@@ -78,6 +78,7 @@ HashSet<Block>walls;
 HashSet<Block>foods;
 HashSet<Block>ghosts;
 Block pacMan;
+Timer gameLoop;
     public PacMan() {
      setPreferredSize(new Dimension(boardWidth, boardHeight));
       setBackground(Color.BLACK);
@@ -97,7 +98,7 @@ packManLeftImage = new ImageIcon(getClass().getResource("/images/pacmanLeft.png"
 
 loadMap();
 
-
+gameLoop = new Timer(50, this);
 
     }
   
@@ -161,6 +162,12 @@ ghosts.add(ghost);
         for(Block food:foods){
           g.fillRect(food.x, food.y, food.width, food.height);
           }
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+      repaint();
+      
     }
 
     }
