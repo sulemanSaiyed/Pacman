@@ -16,11 +16,13 @@ frame.setLocationRelativeTo(null);
 frame.setResizable(false);
 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
  
-PacMan man=new PacMan();
-frame.add(man);
+PacMan pacManGame=new PacMan();
+frame.add(pacManGame);
 frame.pack(); // full size making window
+pacManGame.requestFocus();
    frame.setVisible(true);
     }   
+   
    
 } 
        
