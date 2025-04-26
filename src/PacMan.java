@@ -91,14 +91,13 @@ blueGhostImage= new ImageIcon(getClass().getResource("/images/blueGhost.png")).g
 
 packManDownImage= new ImageIcon(getClass().getResource("/images/pacmanDown.png")).getImage(); 
 packManUpImage= new ImageIcon(getClass().getResource("/images/pacmanUp.png")).getImage(); 
-packManRightImage= new ImageIcon(getClass().getResource("/images/pacmanLeft.png")).getImage(); 
-packManLeftImage= new ImageIcon(getClass().getResource("/images/pacmanRight.png")).getImage(); 
+packManRightImage = new ImageIcon(getClass().getResource("/images/pacmanRight.png")).getImage();
+packManLeftImage = new ImageIcon(getClass().getResource("/images/pacmanLeft.png")).getImage();
+
 
 loadMap();
 
-System.out.println(walls.size());
-System.out.println(foods.size());
-System.out.println(ghosts.size());
+
 
     }
   
@@ -144,4 +143,14 @@ ghosts.add(ghost);
         }
        }
     }  
-}
+   
+    public void paintComponent(Graphics g){
+
+      super.paintComponent(g);
+      draw(g);
+    }
+    public void draw(Graphics g){
+      g.drawImage(pacMan.image, pacMan.x, pacMan.y, pacMan.width,  pacMan.height, null);
+    }
+    }
+
