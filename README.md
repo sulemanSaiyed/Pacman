@@ -27,7 +27,7 @@ This is a **Pacman game** built using **JavaFX**.
 
 ## Screenshot
 
-![Game Screenshot](./assets/Screenshot_2025-04-27_123944.png)
+![Game Screenshot](./assets/sss.png)
 
 ---
 
