@@ -319,6 +319,14 @@ public  void resetPostion(){
 
     @Override
     public void keyReleased(KeyEvent e) {
+      if(gameOver){
+        loadMap();
+        resetPostion();
+        lives=3;
+        score=0;
+        gameOver=false;
+        gameLoop.start();
+      }
     if(e.getKeyCode()==KeyEvent.VK_UP){
       pacMan.updateDirection('U');
     }
