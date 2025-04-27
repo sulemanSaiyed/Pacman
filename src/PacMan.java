@@ -247,6 +247,10 @@ break;
 for(Block ghost:ghosts){
   if(collision(ghost, pacMan)){
     lives -=1;
+    if(lives==0){
+      gameOver=true;
+      return;
+    }
     resetPostion();
   }
   if(ghost.y==tileSize*9 && ghost.direction !='U' && ghost.direction != 'D'){
@@ -296,6 +300,9 @@ public  void resetPostion(){
     public void actionPerformed(ActionEvent e) {
       move();
       repaint();
+      if(gameOver){
+        gameLoop.stop();
+      }
       
     }
 
