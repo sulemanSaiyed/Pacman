@@ -216,6 +216,15 @@ ghosts.add(ghost);
         for(Block food:foods){
           g.fillRect(food.x, food.y, food.width, food.height);
           }
+          //scores
+          g.setFont(new Font("Arial", Font.PLAIN, 20));
+          if (gameOver){
+            g.drawString("Game Over: "+ String.valueOf(score), tileSize/2, tileSize/2);
+          }
+          else{
+            g.drawString("x"+ String.valueOf(lives)+ " score: "+ String.valueOf(score), tileSize/2, tileSize/2);
+          }
+
     }
 public void move(){
   pacMan.x +=pacMan.velocityX;
