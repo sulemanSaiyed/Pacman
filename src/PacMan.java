@@ -278,6 +278,10 @@ for(Block wall:walls){
     }
   }
   foods.remove(foodEaten);
+  if(foods.isEmpty()){
+    loadMap();
+    resetPostion();
+  }
 }
 public boolean  collision(Block a, Block b){
   return  a.x<b.x+b.width&&
