@@ -119,6 +119,13 @@ Block pacMan;
 Timer gameLoop;
 char[] directions={'U', 'D', 'L', 'R'};
 Random random= new Random();
+int score=0;
+int lives=3;
+boolean gameOver=false;
+
+
+
+
     public PacMan() {
      setPreferredSize(new Dimension(boardWidth, boardHeight));
       setBackground(Color.BLACK);
@@ -241,6 +248,15 @@ for(Block wall:walls){
 
   }}
   }
+  // food
+  Block foodEaten=null;
+  for(Block food :foods){
+    if(collision(pacMan, food)){
+      foodEaten=food;
+      score+=10;
+    }
+  }
+  foods.remove(foodEaten);
 }
 public boolean  collision(Block a, Block b){
   return  a.x<b.x+b.width&&
